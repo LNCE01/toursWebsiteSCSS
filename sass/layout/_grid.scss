@@ -1,0 +1,69 @@
+.row {
+    max-width: $grid-width; // 1140px is standard, converted to rem: 1140px/10px= 114rem (because 1 rem is 10px in this project)
+    margin: 0 auto; //to center a block element inside a block element
+    //Here we are selecting everything except the last child
+    &:not(:last-child) { 
+        margin-bottom: $gutter-vertical-small;
+        
+        @include respond(tab-portrait) {
+            margin-bottom: $gutter-vertical;
+        }
+    }
+
+    @include respond(tab-portrait) {
+        max-width: 50rem; 
+        padding: 0 3rem;
+    }
+    
+    @include clearfix;
+
+    //Selects all elements in which the class attribute starts with "col-"
+    [class^="col-"] {
+        float: left;
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-portrait) {
+                margin-right: 0 !important;
+                margin-bottom: $gutter-vertical-small; 
+            }
+        }
+        height: $gutter-vertical;
+
+        @include respond(tab-portrait) {
+            height: 100% !important;
+            width: 100% !important;
+        }
+    }
+
+    //Here starts the styling of the 6 rows
+    .col-1-of-2 {
+        width: calc((100% - #{$gutter-horizontal)}) / 2);
+       
+    }
+
+    .col-1-of-3{
+        width: calc((100% - #{($gutter-horizontal * 2)}) / 3);
+        
+    }
+
+    .col-2-of-3{
+        width: calc( 2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal} );
+        
+        
+    }
+
+    .col-1-of-4{
+        width: calc((100% - #{($gutter-horizontal * 3)}) / 4);
+        
+    }
+
+    .col-2-of-4{
+        width: calc( 2 * ((100% - #{($gutter-horizontal * 3)}) / 4) + #{$gutter-horizontal} );
+        
+    }
+
+    .col-3-of-4{
+        width: calc( 3 * ((100% - #{($gutter-horizontal * 3)}) / 4) + #{$gutter-horizontal} * 2 );
+    }
+}

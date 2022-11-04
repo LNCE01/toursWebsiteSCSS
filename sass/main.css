@@ -1,0 +1,806 @@
+/*Animation of h1, 1st part, "Outdoors" (heading-primary-main)*/
+@-webkit-keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    -webkit-transform: translateX(-10rem);
+            transform: translateX(-10rem);
+    /*Starts on the left*/
+  }
+  80% {
+    /*Pass over the center and goes 15px to the right */
+    -webkit-transform: translateX(1rem);
+            transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    /*Returns 15px back to the center*/
+  }
+}
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    -webkit-transform: translateX(-10rem);
+            transform: translateX(-10rem);
+    /*Starts on the left*/
+  }
+  80% {
+    /*Pass over the center and goes 15px to the right */
+    -webkit-transform: translateX(1rem);
+            transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    /*Returns 15px back to the center*/
+  }
+}
+
+/*Animation of h1, 2nd part, "is where..." (heading-primary-sub)*/
+@-webkit-keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    -webkit-transform: translateX(10rem);
+            transform: translateX(10rem);
+    /*Starts on the right*/
+  }
+  80% {
+    /*Pass over the center and goes 15px to the left */
+    -webkit-transform: translateX(-1rem);
+            transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    /*Returns 15px back to the center*/
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    -webkit-transform: translateX(10rem);
+            transform: translateX(10rem);
+    /*Starts on the right*/
+  }
+  80% {
+    /*Pass over the center and goes 15px to the left */
+    -webkit-transform: translateX(-1rem);
+            transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    /*Returns 15px back to the center*/
+  }
+}
+
+/*Animation of -Hero Section- button. When we load the page it appears from the bottom*/
+@-webkit-keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    -webkit-transform: translateY(4rem);
+            transform: translateY(4rem);
+    /*Starts on the bottom*/
+  }
+  80% {
+    /*Pass over the center and goes 10px up*/
+    -webkit-transform: translateY(-0.5rem);
+            transform: translateY(-0.5rem);
+  }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    -webkit-transform: translateY(4rem);
+            transform: translateY(4rem);
+    /*Starts on the bottom*/
+  }
+  80% {
+    /*Pass over the center and goes 10px up*/
+    -webkit-transform: translateY(-0.5rem);
+            transform: translateY(-0.5rem);
+  }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+/*I'm going to use the universal selector for a simple reset, this will select each and every element and apply the following declarations*/
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+  /*(By default is not inherited, now, we can inherit the value declared on body tag)*/
+}
+
+/*Setting the global font size so i can add relative units to this value*/
+html {
+  /*If default is set to 16px, with this declaration, the html font-size will be 10px (10 / 16 = 0.625)*/
+  /*If user set to 20px, our default font will be 12.5px (20*0.625=12.5)*/
+  font-size: 62.5%;
+  /*Now: 1rem = 10px*/
+}
+
+/*I am using this tag so i can inherit the following styling later*/
+body {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /*Borders and paddings will not add to the total width and height that we specify*/
+}
+
+/*I am using this tag so i can inherit the following styling later*/
+body {
+  font-family: "Lato", sans-serif;
+  /*The Lato font has already been linked to Google Fonts*/
+  font-weight: 400;
+  line-height: 1.7;
+  /*1.7 times bigger than the predefined height*/
+  color: #777;
+  padding: 1.5rem;
+  /*The whole page will have this white padding*/
+}
+
+/*Hero h1 container. Inside there are 2 span: main and sub*/
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  /*So set the entire back part of the heading invisible to the user. It fixes the shakingness*/
+  margin-bottom: 6rem;
+  /*With this we add spacing with the white button*/
+  /*h1 first part "Outdoors nested inside heading-primary"*/
+  /*h1 second part "is where life happens nested inside heading-primary"*/
+}
+
+.heading-primary--main {
+  display: block;
+  /*Block-level elements occupy the entire width & create line breaks before and after (that's what i want)*/
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  -webkit-animation-name: moveInLeft;
+          animation-name: moveInLeft;
+  /*Assigning keyframes rules*/
+  -webkit-animation-duration: 1.8s;
+          animation-duration: 1.8s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+
+.heading-primary--sub {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.74;
+  -webkit-animation-name: moveInRight;
+          animation-name: moveInRight;
+  /*Assigning keyframes rules*/
+  -webkit-animation-duration: 1.8s;
+          animation-duration: 1.8s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+}
+
+.heading-secondary {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  -webkit-transition: all .25s;
+  transition: all .25s;
+}
+
+.heading-secondary:hover {
+  -webkit-transform: skewx(-8deg) skewy(-0.9deg) scale(1.08);
+          transform: skewx(-8deg) skewy(-0.9deg) scale(1.08);
+  text-shadow: 0.5rem 0.1rem 0.2rem rgba(0, 0, 0, 0.09);
+}
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+}
+
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.u-center-text {
+  text-align: center;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem;
+}
+
+.u-margin-top-big {
+  margin-top: 52rem;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  /*Call to action button of the hero section 2 parts: btn and btn-white*/
+  /*pseudoclass to style the element on both states (before and after*/
+  /*This class is for the Hero Section -call to action- button animation that makes it appear from the bottom*/
+  /*Hover state effect*/
+  /*Active state effect*/
+  /*Styling specifically the -call to action- button on the hero section*/
+}
+
+.btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  /*Margins and Paddings are respected*/
+  border-radius: 10rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  /*This is the initial state for the transform animation on hover and active states*/
+  position: relative;
+  /*This is the reference for the absolute position of the after pseudo class*/
+  font-size: 1.6rem;
+}
+
+.btn--animated {
+  -webkit-animation-name: moveInBottom;
+          animation-name: moveInBottom;
+  /*Keyframes rule animation so the button appears from the bottom*/
+  -webkit-animation-duration: 1.8s;
+          animation-duration: 1.8s;
+  -webkit-animation-timing-function: ease-out;
+          animation-timing-function: ease-out;
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+  /*This applies the styles of the 0% before the animation starts*/
+}
+
+.btn:hover {
+  -webkit-transform: translateY(-1.5px);
+          transform: translateY(-1.5px);
+  /*It moves up*/
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+  /*Offsetx, y, blur, color and opacity*/
+  /*Nested inside btn:hover. When we hover, apply the following styles on the after pseudo element:*/
+}
+
+.btn:hover::after {
+  -webkit-transform: scaleX(1.4) scaleY(1.8);
+          transform: scaleX(1.4) scaleY(1.8);
+  /*It gets bigger*/
+  opacity: 0;
+  /*So when it gets bigger also fades out*/
+}
+
+.btn:active {
+  -webkit-transform: translateY(-0.5px);
+          transform: translateY(-0.5px);
+  /*It moves down from the reference*/
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+  /*Offsetx, y, blur, color and opacity*/
+}
+
+.btn--white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn--white::after {
+  background-color: #fff;
+}
+
+.btn--green {
+  background-color: #55c57a;
+  color: #fff;
+}
+
+.btn::after {
+  /*Specify the content and display so the element appears*/
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  /*This is to hide the "new btn" behind the real button*/
+  top: 0;
+  /*This absolute positioning has its reference on the first element with relative positioning, in this case, the btn class, so we can hide it behind*/
+  left: 0;
+  z-index: -1;
+  /*Defines the position when 2 elements are on top of another. I want this to be behind*/
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+
+.btn-text:link, .btn-text:visited {
+  font-size: 2.4rem;
+  weight: 700;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 0rem solid #55c57a;
+  padding: .3rem;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-2px) scale(1.05);
+          transform: translateY(-2px) scale(1.05);
+  border-radius: .2rem;
+}
+
+.btn-text:active {
+  -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+
+.composition {
+  position: relative;
+}
+
+.composition__photo {
+  width: 50%;
+  -webkit-box-shadow: 0 0.5rem rgba(0, 0, 0, 0.4);
+          box-shadow: 0 0.5rem rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  position: absolute;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+
+.composition__photo--p1 {
+  left: 2rem;
+  top: -0.2rem;
+}
+
+.composition__photo--p2 {
+  right: 1.5rem;
+  top: 5.5rem;
+}
+
+.composition__photo--p3 {
+  left: 9.9rem;
+  top: 13rem;
+}
+
+.composition__photo:hover {
+  outline: 1rem solid rgba(0, 0, 0, 0.1);
+  -webkit-transform: scale(1.09) translateY(-2rem);
+          transform: scale(1.09) translateY(-2rem);
+  -webkit-box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.composition:hover .composition__photo:not(:hover) {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+          box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+.feature-box__icon {
+  font-size: 6rem;
+  margin-bottom: .5rem;
+  background-image: -webkit-gradient(linear, left top, right top, from(#7ed56f), to(#28b485));
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.feature-box:hover {
+  -webkit-transform: scale(1.03) translateY(-1.5rem);
+          transform: scale(1.03) translateY(-1.5rem);
+}
+
+.card {
+  -webkit-perspective: 150rem;
+          perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem;
+}
+
+.card__side {
+  height: 50rem;
+  -webkit-transition: all .8s ease;
+  transition: all .8s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-radius: 3px;
+  overflow: hidden;
+  -webkit-box-shadow: 0.7rem 0.7rem 0.7rem 0.05rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0.7rem 0.7rem 0.7rem 0.05rem rgba(0, 0, 0, 0.1);
+}
+
+.card__side--front {
+  background-color: #fff;
+}
+
+.card__side--back {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.card__side--back-1 {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(40, 180, 133, 0.88)), to(rgba(85, 197, 122, 0.45)));
+  background-image: linear-gradient(to right bottom, rgba(40, 180, 133, 0.88), rgba(85, 197, 122, 0.45));
+}
+
+.card:hover .card__side--front {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+}
+
+.card:hover .card__side--back {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.card__picture {
+  background-size: cover;
+  height: 23rem;
+  background-blend-mode: soft-light;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.card__picture--1 {
+  background-image: url(../img/nat-5.jpg);
+}
+
+.card__picture--2 {
+  background-image: url(../img/nat-6.jpg);
+}
+
+.card__picture--3 {
+  background-image: url(../img/nat-7.jpg);
+}
+
+.card__heading {
+  font-size: 2.75rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: right;
+  color: #fff;
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+  width: 75%;
+}
+
+.card__heading-span {
+  border-radius: 2px;
+  padding: 0.45rem;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.card__heading-span--1 {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(40, 180, 133, 0.85)), to(rgba(85, 197, 122, 0.45)));
+  background-image: linear-gradient(to right bottom, rgba(40, 180, 133, 0.85), rgba(85, 197, 122, 0.45));
+}
+
+.card__details {
+  padding: 1.8rem;
+}
+
+.card__details ul {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.card__details ul li {
+  text-align: center;
+  font-size: 1.7rem;
+  padding: 1rem;
+}
+
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+.card__cta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 90%;
+  text-align: center;
+}
+
+.card__price-box {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 8rem;
+}
+
+.card__price-only {
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.card__price-value {
+  font-size: 6rem;
+  font-weight: 300;
+}
+
+.story {
+  width: 75%;
+  margin: 0 auto;
+  -webkit-box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 6rem 6rem 8rem 9rem;
+  font-size: 1.6rem;
+  -webkit-transform: skewX(-12deg);
+          transform: skewX(-12deg);
+}
+
+.story__shape {
+  width: 15rem;
+  height: 15rem;
+  float: left;
+  shape-outside: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  -webkit-transform: translateX(-0.9rem) skewX(12deg);
+          transform: translateX(-0.9rem) skewX(12deg);
+  position: relative;
+  overflow: hidden;
+}
+
+.story__img {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  height: 100%;
+  -webkit-transform: translateX(-3.8rem) scale(1.4);
+          transform: translateX(-3.8rem) scale(1.4);
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.story__text {
+  -webkit-transform: skewX(12deg);
+          transform: skewX(12deg);
+  margin-left: 5rem;
+}
+
+.story__caption {
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  -webkit-transform: translate(-50%, 20%);
+          transform: translate(-50%, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  opacity: 0;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+.story:hover .story__caption {
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.story:hover .story__img {
+  -webkit-transform: translateX(-3.8rem) scale(1);
+          transform: translateX(-3.8rem) scale(1);
+  -webkit-filter: blur(3px) brightness(80%);
+          filter: blur(3px) brightness(80%);
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+/*Style of the header*/
+.header {
+  height: 95vh;
+  /*95 View Height unit is equivalent to 95% of the viewport height*/
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(rgba(40, 180, 133, 0.76))), url(../img/hero.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.76)), url(../img/hero.jpg);
+  /*Link to the hero image*/
+  background-size: cover;
+  /*I want to cover all the box*/
+  background-position: top;
+  /*The top of the image will always stay as the main aspect, if it is need to cut the image, it will do so from elsewhere*/
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /*It has 4 clockwise coordinates x y starting top left for the clips out effect*/
+  position: relative;
+  /*Header is the parent of logo-box, so i added relative*/
+  /*Logo container nested in the header*/
+  /*text-box is to center both h1 and a -call to action- button nested in the header*/
+  /*Logo image nested in the header*/
+}
+
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  /*From the reference which is the parent element (header), with position relative*/
+  left: 4rem;
+}
+
+.header__text-box {
+  position: absolute;
+  top: 40%;
+  /*From the parent element (header)*/
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  /*(From the element itself)*/
+  text-align: center;
+  /*To center the button, because it's an inline element and it works like text*/
+}
+
+.header__logo {
+  height: 3.5rem;
+}
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+
+.row:not(:last-child) {
+  margin-bottom: 6rem;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.row [class^="col-"] {
+  float: left;
+  height: 8rem;
+}
+
+.row [class^="col-"]:not(:last-child) {
+  margin-right: 6rem;
+}
+
+.row .col-1-of-2 {
+  width: calc((100% - 6rem) / 2);
+}
+
+.row .col-1-of-3 {
+  width: calc((100% - 12rem) / 3);
+}
+
+.row .col-2-of-3 {
+  width: calc( 2 * ((100% - 2 * 6rem) / 3) + 6rem);
+}
+
+.row .col-1-of-4 {
+  width: calc((100% - 18rem) / 4);
+}
+
+.row .col-2-of-4 {
+  width: calc( 2 * ((100% - 18rem) / 4) + 6rem);
+}
+
+.row .col-3-of-4 {
+  width: calc( 3 * ((100% - 18rem) / 4) + 6rem * 2);
+}
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh;
+  margin-bottom: 11vh;
+}
+
+.section-features {
+  height: 60vh;
+  padding: 20rem 0rem;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(126, 213, 111, 0.8)), to(rgba(40, 180, 133, 0.76))), url(../img/nat-4.jpg);
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.76)), url(../img/nat-4.jpg);
+  /*Link to the hero image*/
+  background-size: cover;
+  /*I want to cover all the box*/
+  -webkit-transform: skewY(-7deg);
+          transform: skewY(-7deg);
+}
+
+.section-features > * {
+  -webkit-transform: skewY(7deg);
+          transform: skewY(7deg);
+}
+
+.section-tours {
+  background-color: #f7f7f7;
+  padding: 15rem 0 15rem 0;
+}
+
+.section-stories {
+  padding: 15rem 0;
+  position: relative;
+}
+/*# sourceMappingURL=main.css.map */

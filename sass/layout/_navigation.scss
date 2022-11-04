@@ -1,0 +1,168 @@
+//This file is for styling the navigation hamburguer menu
+.navigation {
+    
+    &__checkbox{
+        display: none;
+    }
+
+    
+    &__button{
+        background-color: $color-white;
+        height: 6rem;
+        width: 6rem;
+        position: fixed;
+        top: 1.8rem;
+        right: 1.8rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    
+    &__background{
+        height: 5rem;
+        width: 5rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 2.3rem;
+        right: 2.3rem;
+        background-image: 
+        radial-gradient(
+        rgba($color-grey-dark-3, .7), 
+        rgba($color-grey-light-2, .9) );
+        z-index: 1000;
+        transition: transform .4s;
+    }
+
+    
+    &__nav{
+        height: 0;
+        width: 0;
+        //position: fixed;
+        position: unset;
+        top: 0;
+        right: 0;
+        z-index: 1500;
+        opacity: 0;
+        
+    }
+
+    
+    &__list{
+        position:absolute;
+        top: 10%;
+        right: 10%;
+        /*left: 50%;
+        transform: translate(-50%, -50%);*/
+        list-style: none;
+        text-align:justify;
+        
+    }
+
+    
+    &__item{
+        margin: 1rem;
+    }
+
+    
+    &__link{
+        &:link,
+        &:visited {
+        width: 100%;
+        display: inline-block;
+        font-size: 3rem;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        color: $color-grey-dark;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        letter-spacing: 0.1rem;
+        border-radius: 4px;
+        background-image: linear-gradient(90deg, rgba($color-white, .99) 0%, rgba($color-white, .8) 50%, $color-grey-dark 50%);
+        background-size: 250%;
+        transition: all .7s;
+
+        span{
+            margin-right: 1.5rem;
+            display: inline-block;
+        }
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            transform: translateX(-0.5rem);
+            color: rgba($color-white, .8);
+            font-weight: 700;
+        }
+    }
+
+    //Functionality
+    &__checkbox:checked ~ &__background {
+        transform: scale(28);
+    } 
+    
+    &__checkbox:checked ~ &__nav {
+        position: fixed;
+        opacity: 1;
+        width: 100%;
+        height: 100%;
+    } 
+
+    //Icon
+    &__icon {
+        position: relative;
+        margin-top: 3rem;
+        
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 0.3rem;
+            background-color: $color-grey-dark;
+            display: inline-block;
+        }
+
+        
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .3s;
+        }
+
+        &::before { top: -.8rem;  }
+        &::after { top: .8rem;  }
+    }
+
+    &__button:hover &__icon::before {
+        top: -1rem;
+
+    }
+    &__button:hover &__icon::after {
+        top: 1rem;
+        
+    }
+
+    //Make the line of the middle dissapear
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+
+    }
+    //Rotate one line on top of the other to make a X when the menu is clicked
+    &__checkbox:checked + &__button &__icon::before {
+        transform: rotate(135deg);
+        top: 0rem;
+       
+    }
+    //Rotate one line on top of the other to make a X when the menu is clicked
+    &__checkbox:checked + &__button &__icon::after {
+        transform: rotate(-135deg);
+        top: 0rem;
+        left: 0rem;
+    }
+}

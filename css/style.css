@@ -1,0 +1,1245 @@
+/*
+In here we are going to pass the next breakpoints
+$breakpoint argument choices:
+phone
+tab-portrait
+tab-landscape
+big-desktop
+
+Order to write media queries: base + typography > general layout + grid > page layout > components
+*/
+/*Animation of h1, 1st part, "Outdoors" (heading-primary-main)*/
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    transform: translateX(-10rem);
+    /*Starts on the left*/ }
+  80% {
+    /*Pass over the center and goes 15px to the right */
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    transform: translateX(0);
+    /*Returns 15px back to the center*/ } }
+
+/*Animation of h1, 2nd part, "is where..." (heading-primary-sub)*/
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    transform: translateX(10rem);
+    /*Starts on the right*/ }
+  80% {
+    /*Pass over the center and goes 15px to the left */
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    transform: translateX(0);
+    /*Returns 15px back to the center*/ } }
+
+/*Animation of -Hero Section- button. When we load the page it appears from the bottom*/
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    /*Starts invisible*/
+    transform: translateY(4rem);
+    /*Starts on the bottom*/ }
+  80% {
+    /*Pass over the center and goes 10px up*/
+    transform: translateY(-0.5rem); }
+  100% {
+    opacity: 1;
+    /*Regains Visibility*/
+    transform: translateY(0); } }
+
+/*I'm going to use the universal selector for a simple reset, this will select each and every element and apply the following declarations*/
+*,
+*::after,
+*::before {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit;
+  /*(By default is not inherited, now, we can inherit the value declared on body tag)*/ }
+
+/*Setting the global font size so i can add relative units to this value*/
+html {
+  /*If default is set to 16px, with this declaration, the html font-size will be 10px (10 / 16 = 0.625)*/
+  /*If user set to 20px, our default font will be 12.5px (20*0.625=12.5)*/
+  font-size: 62.5%;
+  /*Now: 1rem = 10px*/
+  /*1rem = 7px (7px/16px= 43.75%) width < 600?
+    @include respond (phone) {
+        font-size: 43.75%;
+    }
+    */ }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+
+/*I am using this tag so i can inherit the following styling later*/
+body {
+  box-sizing: border-box;
+  /*Borders and paddings will not add to the total width and height that we specify*/
+  padding: 1.5rem;
+  /*The whole page will have this white padding*/ }
+  @media only screen and (max-width: 56.25em) {
+    body {
+      padding: 0; } }
+
+::selection {
+  background-color: #55c57a;
+  color: #fff; }
+
+/*I am using this tag so i can inherit the following styling later*/
+body {
+  font-family: "Lato", sans-serif;
+  /*The Lato font has already been linked to Google Fonts*/
+  font-weight: 400;
+  line-height: 1.7;
+  /*1.7 times bigger than the predefined height*/
+  color: #777; }
+
+/*Hero h1 container. Inside there are 2 span: main and sub*/
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /*So set the entire back part of the heading invisible to the user. It fixes the shakingness*/
+  margin-bottom: 6rem;
+  /*With this we add spacing with the white button*/
+  /*h1 first part "Outdoors nested inside heading-primary"*/
+  /*h1 second part "is where life happens nested inside heading-primary"*/ }
+  .heading-primary--main {
+    display: block;
+    /*Block-level elements occupy the entire width & create line breaks before and after (that's what i want)*/
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    /*Assigning keyframes rules*/
+    animation-duration: 1.8s;
+    animation-timing-function: ease-out; }
+    @media only screen and (max-width: 37.5em) {
+      .heading-primary--main {
+        letter-spacing: .8rem;
+        font-size: 5rem; } }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.74;
+    animation-name: moveInRight;
+    /*Assigning keyframes rules*/
+    animation-duration: 1.8s;
+    animation-timing-function: ease-out; }
+
+.heading-secondary {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .25s; }
+  @media only screen and (max-width: 56.25em) {
+    .heading-secondary {
+      font-size: 3rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .heading-secondary {
+      font-size: 2rem;
+      letter-spacing: 0;
+      padding: 0;
+      margin-left: -2rem; } }
+  .heading-secondary:hover {
+    transform: skewx(-8deg) skewy(-0.9deg) scale(1.08);
+    text-shadow: 0.5rem 0.1rem 0.2rem rgba(0, 0, 0, 0.09); }
+    @media only screen and (max-width: 37.5em) {
+      .heading-secondary:hover {
+        transform: skewx(-4deg) skewy(-0.45deg) scale(1.04); } }
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase; }
+  @media only screen and (max-width: 37.5em) {
+    .heading-tertiary {
+      padding-top: 3rem;
+      padding-left: 1rem; } }
+
+.heading-quaternary {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: linear-gradient(to right bottom, #e2e2e2, #e6e6e6);
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .25s; }
+  .heading-quaternary:hover {
+    transform: skewx(-8deg) skewy(-0.9deg) scale(1.08);
+    text-shadow: 0.5rem 0.1rem 0.2rem rgba(0, 0, 0, 0.09); }
+  @media only screen and (max-width: 56.25em) {
+    .heading-quaternary {
+      font-size: 2.5rem;
+      letter-spacing: .1rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .heading-quaternary {
+      font-size: 2.2rem;
+      letter-spacing: .1rem; }
+      .heading-quaternary:hover {
+        transform: skewx(-4deg) skewy(-0.45deg) scale(1.04);
+        text-shadow: 0.5rem 0.1rem 0.2rem rgba(0, 0, 0, 0.09); } }
+
+.paragraph {
+  font-size: 1.6rem; }
+  .paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
+  @media only screen and (max-width: 56.25em) {
+    .u-margin-bottom-big {
+      margin-bottom: 5rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .u-margin-bottom-big {
+      margin-bottom: 3rem; } }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem; }
+  @media only screen and (max-width: 37.5em) {
+    .u-margin-bottom-medium {
+      margin-bottom: 1.5rem; } }
+
+.u-margin-bottom-small {
+  margin-bottom: 2.5rem; }
+
+.u-margin-top-big {
+  margin-top: 52rem; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+.btn {
+  /*Call to action button of the hero section 2 parts: btn and btn-white*/
+  /*pseudoclass to style the element on both states (before and after*/
+  /*This class is for the Hero Section -call to action- button animation that makes it appear from the bottom*/
+  /*Hover state effect*/
+  /*Active state effect*/
+  /*Styling specifically the -call to action- button on the hero section*/ }
+  .btn, .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 3.2rem;
+    display: inline-block;
+    /*Margins and Paddings are respected*/
+    border-radius: 10rem;
+    transition: all 0.3s;
+    /*This is the initial state for the transform animation on hover and active states*/
+    position: relative;
+    /*This is the reference for the absolute position of the after pseudo class*/
+    font-size: 1.6rem;
+    border: none;
+    cursor: pointer; }
+  .btn--animated {
+    animation-name: moveInBottom;
+    /*Keyframes rule animation so the button appears from the bottom*/
+    animation-duration: 1.8s;
+    animation-timing-function: ease-out;
+    animation-delay: 0.75s;
+    animation-fill-mode: backwards;
+    /*This applies the styles of the 0% before the animation starts*/ }
+  .btn:hover {
+    transform: translateY(-1.5px);
+    /*It moves up*/
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    /*Offsetx, y, blur, color and opacity*/
+    /*Nested inside btn:hover. When we hover, apply the following styles on the after pseudo element:*/ }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.8);
+      /*It gets bigger*/
+      opacity: 0;
+      /*So when it gets bigger also fades out*/ }
+  .btn:active, .btn:focus {
+    outline: none;
+    transform: translateY(-0.5px);
+    /*It moves down from the reference*/
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+    /*Offsetx, y, blur, color and opacity*/ }
+  .btn--white {
+    background-color: #fff;
+    color: #777; }
+    .btn--white::after {
+      background-color: #fff; }
+  .btn--green {
+    background-color: #55c57a;
+    color: #fff; }
+  .btn::after {
+    /*Specify the content and display so the element appears*/
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    /*This is to hide the "new btn" behind the real button*/
+    top: 0;
+    /*This absolute positioning has its reference on the first element with relative positioning, in this case, the btn class, so we can hide it behind*/
+    left: 0;
+    z-index: -1;
+    /*Defines the position when 2 elements are on top of another. I want this to be behind*/
+    transition: all .4s; }
+
+.btn-text:link, .btn-text:visited {
+  font-size: 2.4rem;
+  weight: 700;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 0rem solid #55c57a;
+  padding: .3rem;
+  transition: all .2s; }
+
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) scale(1.05);
+  border-radius: .2rem; }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0px); }
+
+.btn-stories:link, .btn-stories:visited {
+  background-color: #646464;
+  font-size: 2.2rem;
+  weight: 700;
+  color: rgba(243, 243, 243, 0.753);
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 0rem solid #55c57a;
+  padding: 2rem;
+  transition: all .2s; }
+
+.btn-stories:hover {
+  background-color: #646464;
+  color: rgba(243, 243, 243, 0.753);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) scale(1.05);
+  border-radius: .2rem; }
+
+.btn-stories:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0px); }
+
+.composition {
+  position: relative; }
+  @media only screen and (max-width: 56.25em) {
+    .composition {
+      margin-top: 1rem; } }
+  .composition__photo {
+    width: 50%;
+    box-shadow: 0 0.5rem rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    position: absolute;
+    transition: all .4s; }
+    .composition__photo--p1 {
+      left: 2rem;
+      top: -0.2rem; }
+    .composition__photo--p2 {
+      right: 1.5rem;
+      top: 5.5rem; }
+    .composition__photo--p3 {
+      left: 9.9rem;
+      top: 13rem; }
+    .composition__photo:hover {
+      outline: 1rem solid rgba(0, 0, 0, 0.1);
+      transform: scale(1.09) translateY(-2rem);
+      box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+      z-index: 1; }
+  .composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.9); }
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.88);
+  font-size: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: all .3s; }
+  @media only screen and (max-width: 56.25em) {
+    .feature-box {
+      padding: 1.6rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .feature-box {
+      padding: 1.4rem; } }
+  .feature-box__icon {
+    font-size: 6rem;
+    margin-bottom: .5rem;
+    background-image: linear-gradient(to right, #7ed56f, #28b485);
+    display: inline-block;
+    -webkit-background-clip: text;
+    color: transparent; }
+    @media only screen and (max-width: 56.25em) {
+      .feature-box__icon {
+        margin-bottom: .15rem;
+        font-size: 4.5rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .feature-box__icon {
+        margin-bottom: 0;
+        font-size: 4rem; } }
+  .feature-box:hover {
+    transform: scale(1.03) translateY(-1.5rem); }
+
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem; }
+  .card__side {
+    height: 50rem;
+    transition: all .8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0.7rem 0.7rem 0.7rem 0.05rem rgba(0, 0, 0, 0.1); }
+    .card__side--front {
+      background-color: #fff; }
+    .card__side--back {
+      transform: rotateY(180deg); }
+      .card__side--back-1 {
+        background-image: linear-gradient(to right bottom, rgba(40, 180, 133, 0.88), rgba(85, 197, 122, 0.45)); }
+  .card:hover .card__side--front {
+    transform: rotateY(-180deg); }
+  .card:hover .card__side--back {
+    transform: rotateY(0deg); }
+  .card__picture {
+    background-size: cover;
+    height: 23rem;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+    .card__picture--1 {
+      background-image: url(../img/nat-5.jpg); }
+    .card__picture--2 {
+      background-image: url(../img/nat-6.jpg); }
+    .card__picture--3 {
+      background-image: url(../img/nat-7.jpg); }
+  .card__heading {
+    font-size: 2.75rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: #fff;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    width: 75%; }
+  .card__heading-span {
+    border-radius: 2px;
+    padding: 0.45rem;
+    backface-visibility: hidden;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone; }
+    .card__heading-span--1 {
+      background-image: linear-gradient(to right bottom, rgba(40, 180, 133, 0.85), rgba(85, 197, 122, 0.45)); }
+  .card__details {
+    padding: 1.8rem; }
+    .card__details ul {
+      list-style: none;
+      width: 80%;
+      margin: 0 auto; }
+      .card__details ul li {
+        text-align: center;
+        font-size: 1.7rem;
+        padding: 1rem; }
+        .card__details ul li:not(:last-child) {
+          border-bottom: 1px solid #eee; }
+  .card__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+    padding: 4rem; }
+  .card__price-box {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3rem; }
+  .card__price-only {
+    font-size: 1.9rem;
+    text-transform: uppercase;
+    font-weight: 300; }
+  .card__price-value {
+    font-size: 6rem;
+    font-weight: 300; }
+  @media only screen and (max-width: 56.25em) {
+    .card {
+      height: auto; }
+      .card__side {
+        height: auto;
+        position: relative;
+        width: 100%;
+        border-radius: 3px;
+        box-shadow: 0.7rem 0.7rem 0.7rem 0.05rem rgba(0, 0, 0, 0.1); }
+        .card__side--back {
+          transform: rotateY(0); }
+          .card__side--back-1 {
+            background: #fff; }
+      .card:hover .card__side--front {
+        transform: rotateY(0); }
+      .card__picture {
+        background-size: cover;
+        height: 35rem;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+        .card__picture--1 {
+          background-image: url(../img/nat-5.jpg); }
+        .card__picture--2 {
+          background-image: url(../img/nat-6.jpg); }
+        .card__picture--3 {
+          background-image: url(../img/nat-7.jpg); }
+      .card__heading {
+        font-size: 2.25rem;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: right;
+        color: #fff;
+        position: absolute;
+        top: 25rem;
+        right: 1rem;
+        width: 70%; }
+      .card__heading-span {
+        border-radius: 2px;
+        padding: 0.45rem;
+        backface-visibility: hidden;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone; }
+        .card__heading-span--1 {
+          background-image: linear-gradient(to right bottom, rgba(40, 180, 133, 0.9), rgba(85, 197, 122, 0.45)); }
+      .card__details {
+        padding: 2rem; }
+        .card__details ul {
+          list-style: none;
+          width: 80%;
+          margin: 0 auto; }
+          .card__details ul li {
+            text-align: center;
+            font-size: 1.7rem;
+            padding: 1rem; }
+            .card__details ul li:not(:last-child) {
+              border-bottom: 1px solid #eee; }
+      .card__cta {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0);
+        width: 100%;
+        text-align: center;
+        padding: 0 0 5rem 0; }
+      .card__price-box {
+        text-align: center;
+        color: #28b485;
+        margin-bottom: 3rem; }
+      .card__price-only {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        font-weight: 400;
+        margin-top: 0rem; }
+      .card__price-value {
+        font-size: 4.5rem;
+        font-weight: 600; } }
+
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 6rem 6rem 8rem 9rem;
+  font-size: 1.6rem;
+  transform: skewX(-12deg); }
+  @media only screen and (max-width: 56.25em) {
+    .story {
+      margin-top: -1rem;
+      margin-bottom: -3rem;
+      width: 100%;
+      padding: 3rem 4rem 3rem 4rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .story {
+      transform: skewX(-5deg);
+      margin-top: -1rem;
+      margin-bottom: -4.5rem; } }
+  .story__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateY(-1.5rem) translateX(-3.5rem) skewX(12deg);
+    position: relative;
+    overflow: hidden; }
+    @media only screen and (max-width: 56.25em) {
+      .story__shape {
+        transform: translateY(1.2rem) translateX(-2.5rem) skewX(12deg); } }
+    @media only screen and (max-width: 37.5em) {
+      .story__shape {
+        width: 12rem;
+        height: 12rem;
+        transform: translateY(3.5rem) translateX(-3rem) skewX(5deg); } }
+  .story__img {
+    backface-visibility: hidden;
+    height: 100%;
+    transform: translateX(-3.8rem) scale(1.4);
+    transition: all .5s; }
+  .story__text {
+    transform: skewX(12deg);
+    margin-left: 8rem; }
+    @media only screen and (max-width: 37.5em) {
+      .story__text {
+        width: 70%;
+        text-align: center;
+        margin-left: 10rem;
+        transform: skewX(5deg);
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto; } }
+  .story__caption {
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, 20%);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    opacity: 0;
+    transition: all .5s; }
+  .story:hover .story__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%); }
+  .story:hover .story__img {
+    transform: translateX(-3.8rem) scale(1);
+    filter: blur(3px) brightness(80%); }
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90%;
+  width: 100%;
+  z-index: -1;
+  overflow: hidden;
+  transform: skewY(-6deg); }
+  .bg-video__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: blur(1px) brightness(80%); }
+  @media only screen and (max-width: 56.25em) {
+    .bg-video {
+      display: none; } }
+
+.form__group:not(:last-child) {
+  margin-bottom: 2rem; }
+
+.form__input {
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+  padding: 1.5rem 1rem;
+  border-radius: 3px;
+  background-color: rgba(119, 119, 119, 0.09);
+  border: 0.4rem solid transparent;
+  width: 100%;
+  display: block;
+  transition: all .4s; }
+  @media only screen and (max-width: 56.25em) {
+    .form__input {
+      width: 100%; } }
+  .form__input:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.09);
+    border: 0.4rem solid #ff7730; }
+  .form__input:focus:invalid {
+    border: 0.4rem solid #ff7730; }
+  .form__input:focus:valid {
+    border: 0.4rem solid #28b485; }
+  .form__input::-webkit-input-placeholder {
+    color: #999; }
+
+.form__label {
+  font-family: inherit;
+  font-size: 1.5rem;
+  padding-left: 1.4rem;
+  font-weight: 700;
+  margin-top: .7rem;
+  display: block;
+  transition: all .5s; }
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4rem); }
+
+.form__radio-group {
+  width: 49%;
+  display: inline-block; }
+  @media only screen and (max-width: 56.25em) {
+    .form__radio-group {
+      width: 100%;
+      margin-bottom: 1.5rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .form__radio-group {
+      width: 100%;
+      margin-bottom: 1rem; } }
+
+.form__radio-input {
+  display: none; }
+
+.form__radio-label {
+  font-size: 1.6rem;
+  cursor: pointer;
+  position: relative;
+  padding-left: 2.5rem; }
+
+.form__radio-button {
+  height: 2rem;
+  width: 2rem;
+  border: 4px solid #55c57a;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0; }
+  .form__radio-button::after {
+    content: "";
+    display: block;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #55c57a;
+    opacity: 0;
+    transition: all .2s; }
+
+.form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
+  opacity: 1; }
+
+.popup {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s; }
+  .popup:target {
+    opacity: 1;
+    visibility: visible; }
+  .popup__close:link, .popup__close:visited {
+    color: #777;
+    position: absolute;
+    /*top: 1.5rem;
+            right: 4rem;*/
+    float: right;
+    top: 2%;
+    right: 24%;
+    font-size: 3rem;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1; }
+  .popup__close:hover {
+    color: #55c57a; }
+  .popup__content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    background-color: #fff;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    overflow: hidden; }
+    @media only screen and (max-width: 56.25em) {
+      .popup__content {
+        width: 90%;
+        padding: 8rem 4rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .popup__content {
+        height: 55rem;
+        width: 40rem;
+        padding: 0; } }
+  .popup__img {
+    display: block;
+    width: 100%; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__img {
+        display: none; } }
+  .popup__left {
+    width: 33.333333%;
+    float: left; }
+    @media only screen and (max-width: 37.5em) {
+      .popup__left {
+        height: 0;
+        width: 0;
+        float: unset; } }
+  .popup__right {
+    vertical-align: center;
+    width: 66.66666667%;
+    float: left;
+    text-align: justify;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    padding: 3rem 5rem; }
+    @media only screen and (max-width: 56.25em) {
+      .popup__right {
+        padding: 2rem 3.5rem;
+        width: 70%; } }
+    @media only screen and (max-width: 37.5em) {
+      .popup__right {
+        height: 100%;
+        width: 100%; } }
+  .popup__text {
+    width: 90%;
+    font-size: 1.45rem;
+    margin-bottom: 4rem;
+    -moz-column-count: 2;
+    -moz-column-gap: 4rem;
+    -moz-column-rule: 1px solid rgba(153, 153, 153, 0.7);
+    column-count: 2;
+    column-gap: 4rem;
+    column-rule: 1px solid rgba(153, 153, 153, 0.7);
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto; }
+    @media only screen and (max-width: 56.25em) {
+      .popup__text {
+        column-gap: 2rem;
+        margin-top: -3.9rem; } }
+    @media only screen and (max-width: 37.5em) {
+      .popup__text {
+        column-count: 1;
+        column-gap: 0rem;
+        column-rule: unset;
+        width: 100%;
+        margin-bottom: 5rem;
+        margin-left: -8rem;
+        margin-top: 2rem; } }
+
+/*Style of the header*/
+.header {
+  height: 95vh;
+  /*95 View Height unit is equivalent to 95% of the viewport height*/
+  background-image: url(../img/nat-4.jpg);
+  /*Link to the hero image*/
+  background-size: cover;
+  /*I want to cover all the box*/
+  background-position: center;
+  /*The top of the image will always stay as the main aspect, if it is need to cut the image, it will do so from elsewhere*/
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  /*It has 4 clockwise coordinates x y starting top left for the clips out effect*/
+  position: relative;
+  /*Header is the parent of logo-box, so i added relative*/
+  /*Logo container nested in the header*/
+  /*text-box is to center both h1 and a -call to action- button nested in the header*/
+  /*Logo image nested in the header*/ }
+  @media only screen and (max-width: 37.5em) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); } }
+  .header__logo-box {
+    position: absolute;
+    top: 2rem;
+    /*From the reference which is the parent element (header), with position relative*/
+    left: 2rem; }
+  .header__text-box {
+    position: absolute;
+    top: 47%;
+    /*From the parent element (header)*/
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*(From the element itself)*/
+    text-align: center;
+    /*To center the button, because it's an inline element and it works like text*/ }
+  .header__logo {
+    height: 3.5rem; }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 6rem; }
+    @media only screen and (max-width: 56.25em) {
+      .row:not(:last-child) {
+        margin-bottom: 8rem; } }
+  @media only screen and (max-width: 56.25em) {
+    .row {
+      max-width: 50rem;
+      padding: 0 3rem; } }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left;
+    height: 8rem; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+      @media only screen and (max-width: 56.25em) {
+        .row [class^="col-"]:not(:last-child) {
+          margin-right: 0 !important;
+          margin-bottom: 6rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .row [class^="col-"] {
+        height: 100% !important;
+        width: 100% !important; } }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 12rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc( 2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 18rem) / 4); }
+  .row .col-2-of-4 {
+    width: calc( 2 * ((100% - 18rem) / 4) + 6rem); }
+  .row .col-3-of-4 {
+    width: calc( 3 * ((100% - 18rem) / 4) + 6rem * 2); }
+
+.footer {
+  background-color: #333;
+  padding: 10rem 0;
+  font-size: 1.4rem;
+  color: #f7f7f7;
+  transition: all .2s; }
+  @media only screen and (max-width: 56.25em) {
+    .footer {
+      padding: 2rem 0;
+      width: 100%;
+      font-size: 1.4rem; } }
+  .footer__logo-box {
+    text-align: center;
+    margin-bottom: 8rem; }
+    @media only screen and (max-width: 56.25em) {
+      .footer__logo-box {
+        margin-bottom: 0rem; } }
+  .footer__navigation {
+    border-top: 1px solid #f7f7f7;
+    padding: 2rem;
+    display: inline-block; }
+  .footer__logo {
+    width: 15rem;
+    height: auto; }
+  .footer__list {
+    list-style: none; }
+  .footer__item {
+    display: inline-block; }
+    .footer__item:not(last-child) {
+      margin-right: 1.5rem; }
+  .footer__link:link, .footer__link:visited {
+    color: #f7f7f7;
+    background-color: #333;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block; }
+  .footer__link:hover, .footer__link:active {
+    color: #55c57a;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+    transform: rotate(-0.2deg) scale(1.05);
+    border-radius: 3px; }
+  .footer__copyright {
+    border-top: 1px solid #f7f7f7;
+    padding: 2rem; }
+    @media only screen and (max-width: 56.25em) {
+      .footer__copyright {
+        width: 100%;
+        text-align: center; } }
+  .footer .col-1-of-2 {
+    display: inline-block; }
+
+.navigation__checkbox {
+  display: none; }
+
+.navigation__button {
+  background-color: #fff;
+  height: 6rem;
+  width: 6rem;
+  position: fixed;
+  top: 1.8rem;
+  right: 1.8rem;
+  border-radius: 50%;
+  z-index: 2000;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer; }
+
+.navigation__background {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 2.3rem;
+  right: 2.3rem;
+  background-image: radial-gradient(rgba(51, 51, 51, 0.7), rgba(238, 238, 238, 0.9));
+  z-index: 1000;
+  transition: transform .4s; }
+
+.navigation__nav {
+  height: 0;
+  width: 0;
+  position: unset;
+  top: 0;
+  right: 0;
+  z-index: 1500;
+  opacity: 0; }
+
+.navigation__list {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  /*left: 50%;
+        transform: translate(-50%, -50%);*/
+  list-style: none;
+  text-align: justify; }
+
+.navigation__item {
+  margin: 1rem; }
+
+.navigation__link:link, .navigation__link:visited {
+  width: 100%;
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  color: #777;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 0.1rem;
+  border-radius: 4px;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.99) 0%, rgba(255, 255, 255, 0.8) 50%, #777 50%);
+  background-size: 250%;
+  transition: all .7s; }
+  .navigation__link:link span, .navigation__link:visited span {
+    margin-right: 1.5rem;
+    display: inline-block; }
+
+.navigation__link:hover, .navigation__link:active {
+  background-position: 100%;
+  transform: translateX(-0.5rem);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 700; }
+
+.navigation__checkbox:checked ~ .navigation__background {
+  transform: scale(28); }
+
+.navigation__checkbox:checked ~ .navigation__nav {
+  position: fixed;
+  opacity: 1;
+  width: 100%;
+  height: 100%; }
+
+.navigation__icon {
+  position: relative;
+  margin-top: 3rem; }
+  .navigation__icon, .navigation__icon::before, .navigation__icon::after {
+    width: 3rem;
+    height: 0.3rem;
+    background-color: #777;
+    display: inline-block; }
+  .navigation__icon::before, .navigation__icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all .3s; }
+  .navigation__icon::before {
+    top: -.8rem; }
+  .navigation__icon::after {
+    top: .8rem; }
+
+.navigation__button:hover .navigation__icon::before {
+  top: -1rem; }
+
+.navigation__button:hover .navigation__icon::after {
+  top: 1rem; }
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  background-color: transparent; }
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  transform: rotate(135deg);
+  top: 0rem; }
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  transform: rotate(-135deg);
+  top: 0rem;
+  left: 0rem; }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -20vh;
+  margin-bottom: 11vh; }
+  @media only screen and (max-width: 56.25em) {
+    .section-about {
+      padding: 20rem 0;
+      margin-top: -12vh;
+      height: 100vh;
+      margin-bottom: -6rem; } }
+  @media only screen and (max-width: 37.5em) {
+    .section-about {
+      padding: 20rem 0;
+      margin-top: -15vh;
+      height: 100%;
+      margin-bottom: 11rem; } }
+  @media only screen and (max-width: 1024px) {
+    .section-about {
+      padding: 20rem 0;
+      margin-top: -10vh;
+      height: 100%;
+      margin-bottom: 15rem; } }
+
+.section-features {
+  height: 60vh;
+  padding: 20rem 0rem;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.02)), url(../img/forest-hero.jpg);
+  /*Link to the hero image*/
+  background-size: cover;
+  /*I want to cover all the box*/
+  background-position: center;
+  transform: skewY(-7deg); }
+  .section-features > * {
+    transform: skewY(7deg); }
+  @media only screen and (min-width: 112.5em) {
+    .section-features {
+      height: 70vh; } }
+  @media only screen and (max-width: 112.5em) {
+    .section-features {
+      height: 100vh; } }
+  @media only screen and (max-width: 75em) {
+    .section-features {
+      padding: 20rem 0;
+      height: 70rem; } }
+  @media only screen and (max-width: 56.25em) {
+    .section-features {
+      padding: 8rem 0;
+      height: 100%; } }
+
+.section-tours {
+  background-color: #f7f7f7;
+  padding: 15rem 0 15rem 0; }
+  @media only screen and (max-width: 56.25em) {
+    .section-tours {
+      padding: 10rem 0; } }
+
+#discover-tours {
+  margin-top: 52rem; }
+  @media only screen and (max-width: 56.25em) {
+    #discover-tours {
+      margin-top: 5rem !important; } }
+  @media only screen and (max-width: 37.5em) {
+    #discover-tours {
+      margin-top: 2.5rem !important; } }
+
+.section-stories {
+  padding: 15rem 0;
+  position: relative;
+  z-index: 0; }
+  @media only screen and (max-width: 56.25em) {
+    .section-stories {
+      padding: 8rem 0;
+      background-image: url(../img/forest-phone-story.jpg);
+      /*Link to the hero image*/
+      background-size: cover;
+      /*I want to cover all the box*/
+      background-position: center; } }
+  @media only screen and (max-width: 37.5em) {
+    .section-stories {
+      padding: 4.5rem 0; } }
+
+.section-book {
+  padding: 15rem 0;
+  background-color: #fff;
+  /*transform: skewY(-6deg);
+    & > * {
+        transform: skewY(6deg);
+    }
+    
+    background-image: linear-gradient(to right bottom, #55c57a79, #7ed56f77);
+    transform: skewY(-6deg);
+    
+    & > * {
+        transform: skewY(6deg);
+        
+    }
+    */ }
+
+.book {
+  height: 55rem;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(to right, rgba(238, 238, 238, 0.99), rgba(247, 247, 247, 0.8)); }
+  .book__form {
+    float: left;
+    height: 100%;
+    width: 40%;
+    padding: 6rem; }
+    @media only screen and (max-width: 56.25em) {
+      .book__form {
+        padding: 6rem 10rem;
+        width: 100%; } }
+    @media only screen and (max-width: 37.5em) {
+      .book__form {
+        padding: 6rem 10rem;
+        width: 100%; } }
+  .book__picture {
+    float: right;
+    height: 100%;
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+    -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+    background-image: url(../img/nat-10.jpg);
+    transition: all .5s; }
+    @media only screen and (max-width: 56.25em) {
+      .book__picture {
+        display: none; } }
+  .book:hover .book__picture {
+    filter: brightness(70%); }

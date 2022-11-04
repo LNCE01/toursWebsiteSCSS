@@ -1,0 +1,176 @@
+//Style very specific to the homepage
+
+.section-about {
+    background-color: $color-grey-light-1;
+    padding: 25rem 0; //Top and bottom 25rem   
+    margin-top: -20vh; //So the grey background touches the polygon
+    margin-bottom: 11vh;
+
+    @include respond(tab-portrait) {
+        padding: 20rem 0;
+        margin-top: -12vh;
+        height: 100vh;
+        margin-bottom: -6rem;
+    }
+
+    @include respond(phone) {
+        padding: 20rem 0;
+        margin-top: -15vh;
+        height: 100%;
+        margin-bottom: 11rem;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        padding: 20rem 0;
+        margin-top: -10vh;
+        height: 100%;
+        margin-bottom: 15rem;
+    }
+}
+
+.section-features {
+    height: 60vh;
+    padding: 20rem 0rem;
+    background-image: /*2 background images, a thin linear gradient and an image*/
+    linear-gradient( /*A thin gradient to increase contrast*/
+    to bottom, 
+    rgba($color-black, 0.1),
+    rgba($color-black, 0.02)) , 
+    url(../img/forest-hero.jpg); /*Link to the hero image*/
+    background-size: cover; /*I want to cover all the box*/
+    background-position: center;
+    transform: skewY(-7deg);
+    //Here we are going to select the direct children (row)
+    & > * {
+        transform: skewY(7deg);
+    }
+   
+    @include respond(big-desktop) {
+        height: 70vh;
+    }
+
+    @include respond(laptop){
+        height: 100vh;
+    }
+
+    @include respond(tab-landscape){
+        padding: 20rem 0;
+        height: 70rem;
+    }
+
+    @include respond(tab-portrait) {
+        padding: 8rem 0;
+        height: 100%;
+    }
+    
+    
+}
+    
+.section-tours {
+    background-color: $color-grey-light-1;
+    padding: 15rem 0 15rem 0; //Top and bottom 25rem 
+    //margin-bottom: 15rem; 
+    @include respond(tab-portrait) {
+        padding: 10rem 0;  
+    }
+   
+}
+
+#discover-tours {
+    margin-top: 52rem;
+    @include respond(tab-portrait) {
+        margin-top: 5rem !important;
+    }
+
+    @include respond(phone) {
+        margin-top: 2.5rem !important;
+    }
+} 
+.section-stories {
+    padding: 15rem 0;
+    position: relative;
+    z-index: 0;
+    
+    @include respond(tab-portrait) {
+        padding: 8rem 0;
+        background-image: url(../img/forest-phone-story.jpg); /*Link to the hero image*/
+        background-size: cover; /*I want to cover all the box*/
+        background-position: center;
+    } 
+    
+    @include respond(phone) {
+        padding: 4.5rem 0;
+    }
+    
+}
+
+.section-book {
+    padding: 15rem 0;
+    background-color: $color-white;
+    //background-image: url(../img/nat-10.jpg);
+    //background-size: cover;
+    /*transform: skewY(-6deg);
+    & > * {
+        transform: skewY(6deg);
+    }
+    
+    background-image: linear-gradient(to right bottom, #55c57a79, #7ed56f77);
+    transform: skewY(-6deg);
+    
+    & > * {
+        transform: skewY(6deg);
+        
+    }
+    */
+    
+}
+
+
+.book { 
+    height: 55rem;
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .3);
+    background-image: 
+    linear-gradient(to right, 
+    rgba($color-grey-light-2, .99), 
+    rgba($color-grey-light-1, .80));
+   
+
+    &__form {
+        float: left;
+        height: 100%;
+        width: 40%;
+        padding: 6rem;
+
+        @include respond(tab-portrait) {
+            padding: 6rem 10rem;
+            width: 100%;
+        }
+
+        @include respond(phone) {
+            padding: 6rem 10rem;
+            width: 100%;
+        }
+    }
+
+    &__picture{
+        float: right;
+        height: 100%;
+        width: 60%;
+        background-size: cover;
+        background-position:center;
+        -webkit-clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+        background-image: url(../img/nat-10.jpg);
+        transition: all .5s;
+
+        @include respond(tab-portrait) {
+            display: none;
+        }
+    }
+    
+    &:hover &__picture {
+       filter: /*blur(2px)*/ brightness(70%);
+    }
+}

@@ -1,0 +1,51 @@
+//This component is for the feature box
+
+.feature-box {
+    background-color: rgba($color-white, .88);
+    font-size: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    transition: all .3s;
+
+    @include respond(tab-landscape) {
+        
+    }
+
+    @include respond(tab-portrait) {
+        padding: 1.6rem;
+    }
+
+    @include respond(phone) {
+        padding: 1.4rem;
+    }
+
+    &__icon {
+        font-size: 6rem;
+        margin-bottom: .5rem;
+        //Setting a background gradient on the heading
+        background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+        //The background only have to occupy the width of the h2, that's why i took off "block"
+        display: inline-block; 
+        //To get clipped that gradient background behind the text. So it will only be visible where the text is
+        -webkit-background-clip: text;
+        //Making the text transparent so we can see the gradient.
+        color: transparent;
+
+        @include respond(tab-portrait) {
+            margin-bottom: .15rem;
+            font-size: 4.5rem;
+        }
+    
+        @include respond(phone) {
+            margin-bottom: 0;
+            font-size: 4rem;
+        }
+    }
+
+    &:hover {
+        transform: scale(1.03) translateY(-1.5rem);
+    }
+
+}

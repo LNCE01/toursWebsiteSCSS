@@ -1,0 +1,139 @@
+//Here are all the typography settings
+
+/*I am using this tag so i can inherit the following styling later*/
+body {
+    font-family: "Lato", sans-serif; /*The Lato font has already been linked to Google Fonts*/
+    font-weight: 400;
+    line-height: 1.7; /*1.7 times bigger than the predefined height*/
+    color: $color-grey-dark;
+
+}
+
+/*Hero h1 container. Inside there are 2 span: main and sub*/
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden; /*So set the entire back part of the heading invisible to the user. It fixes the shakingness*/
+    margin-bottom: 6rem; /*With this we add spacing with the white button*/
+  
+    
+    /*h1 first part "Outdoors nested inside heading-primary"*/
+    &--main {
+        display: block; /*Block-level elements occupy the entire width & create line breaks before and after (that's what i want)*/
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        animation-name: moveInLeft; /*Assigning keyframes rules*/
+        animation-duration: 1.8s; 
+        animation-timing-function: ease-out;
+            
+        @include respond(phone) {
+            letter-spacing: .8rem;
+            font-size: 5rem;
+        }
+    }
+    /*h1 second part "is where life happens nested inside heading-primary"*/
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.74;
+        animation-name: moveInRight; /*Assigning keyframes rules*/
+        animation-duration: 1.8s;
+        animation-timing-function: ease-out;
+    }
+}
+
+.heading-secondary {
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    //Setting a background gradient on the heading
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    //The background only have to occupy the width of the h2, that's why i took off "block"
+    display: inline-block; 
+    //To get clipped that gradient background behind the text. So it will only be visible where the text is
+    -webkit-background-clip: text;
+    //Making the text transparent so we can see the gradient.
+    color: transparent;
+    letter-spacing: .2rem; 
+    //Adding an animation to the h2
+    transition: all .25s;
+
+
+    @include respond(tab-portrait) {
+        font-size: 3rem;
+    }
+
+    @include respond(phone) {
+        font-size: 2rem;
+        letter-spacing: 0;
+        padding: 0;
+        margin-left: -2rem;
+    }
+
+    &:hover {
+        transform: skewx(-8deg) skewy(-0.9deg) scale(1.08);
+        text-shadow: .5rem .1rem .2rem rgba($color-black, .09);
+
+        @include respond(phone) {
+            transform: skewx(-4deg) skewy(-0.45deg) scale(1.04);
+        }
+    }
+}
+
+.heading-tertiary {
+    font-size: $default-font-size; //1.6rem
+    font-weight: 700;
+    text-transform: uppercase;
+
+    @include respond(phone) {
+       padding-top: 3rem;
+       padding-left: 1rem;
+    }
+
+}
+
+.heading-quaternary {
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    //Setting a background gradient on the heading
+    background-image: linear-gradient(to right bottom, rgb(226, 226, 226), rgb(230, 230, 230));
+    //The background only have to occupy the width of the h2, that's why i took off "block"
+    display: inline-block; 
+    //To get clipped that gradient background behind the text. So it will only be visible where the text is
+    -webkit-background-clip: text;
+    //Making the text transparent so we can see the gradient.
+    color: transparent;
+    letter-spacing: .2rem; 
+    //Adding an animation to the h2
+    transition: all .25s;
+    //
+    &:hover {
+        transform: skewx(-8deg) skewy(-0.9deg) scale(1.08);
+        text-shadow: .5rem .1rem .2rem rgba($color-black, .09);
+    }
+
+    @include respond(tab-portrait) {
+        font-size: 2.5rem;
+        letter-spacing: .1rem; 
+    }
+
+    @include respond(phone) {
+        font-size: 2.2rem;
+        letter-spacing: .1rem; 
+        &:hover {
+            transform: skewx(-4deg) skewy(-0.45deg) scale(1.04);
+            text-shadow: .5rem .1rem .2rem rgba($color-black, .09);
+        }
+    }
+}
+
+.paragraph {
+    font-size: $default-font-size; //1.6rem
+    //Selecting everything except the last child
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}
